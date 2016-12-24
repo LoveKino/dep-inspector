@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const chalk = require('chalk');
+chalk.enabled = true;
+const inspector = require('..');
+
+let getLogger = () => {
+  function log(color, msg) {
+    console.log(chalk[color](msg));
+  }
+  return {
+    info: msg => log('green', msg),
+    warn: msg => log('yellow', msg),
+    error: msg => log('red', msg)
+  };
+};
+
+let logger = getLogger();
+
+let displayNotDep = (noDep) => {
+  if (noDep.dep && noDep.dep.length) {
+    console.log(chalk.yellow.bold('Dependences not use:'));
+    logger.warn(`${noDep.dep.join('\n')}\n`);
+  }
+  if (noDep.dev && noDep.dev.length) {
+    console.log(chalk.yellow.bold('Develop Dependences not use:'));
+    logger.warn(`${noDep.dev.join('\n')}\n`);
+  }
+};
+
+let displayDep = (msg, deps) => {
+  console.log(chalk.green.bold(msg));
+  for (let name in deps) {
+    logger.info(`[${name}]: ${deps[name]}`);
+  }
+  logger.info('\n');
+};
+
+let display = (options = {}) => {
+  const cwd = options.path || process.cwd();
+  inspector(cwd, options).then((result) => {
+    let noDep = result.notDep || {};
+    displayNotDep(noDep);
+    let deps = result.deps;
+    displayDep('Dependencies use', deps.dep);
+    displayDep('Develop Dependencies use', deps.dev);
+  }).catch((e) => {
+    logger.error(`inspector error: ${e}`);
+  });
+};
+
+let displayIgnore = i => {
+  let ignore = i.split(',');
+  display({
+    ignore
+  });
+};
+
+program
+  .option('-i, --ignore <n>', 'ignore depdencies', displayIgnore)
+  .parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  display();
+}

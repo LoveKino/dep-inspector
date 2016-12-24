@@ -1,2 +1,22 @@
 # dep-inspector
-for npm dependencies
+for npm dependencies inspector
+
+### usage
+
+#### install
+```
+  npm install -g dep-inspector
+```
+
+#### use 
+``` 
+   cd yourProject
+   dep-inspector
+```
+
+### result
+
+
+
+
+
