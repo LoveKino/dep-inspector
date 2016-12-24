@@ -1,13 +1,14 @@
 {
   "name": "dep-inspector",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "bin": {
-    "dep-inspector": "./bin/index"
+    "dep-inspector": "./bin/dep-inspector"
   },
   "scripts": {
-    "test": "mocha test/**/*"
+    "test": "mocha test/**/*",
+    "cov": "istanbul cover npm test"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0"
   },
   "dependencies": {
     "bluebird": "^3.4.7",

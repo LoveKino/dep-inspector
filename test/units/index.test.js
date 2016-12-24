@@ -2,11 +2,12 @@ const {
   inspect
 } = require('../../lib/inspector');
 const path = require('path');
+const expect = require('chai').expect;
 
 describe('inspect index', () => {
   it('inspect proj1', (done) => {
     const dir1 = path.join(__dirname, '../fixstures/proj1');
-    let expect = {
+    let expected = {
       "notDep": {
         "dep": [
           "glob"
@@ -31,7 +32,8 @@ describe('inspect index', () => {
       }
     };
     inspect(dir1).then((data) => {
-      expect(data).to.deep.equal(data);
+      expect(data).to.deep.equal(expected);
+      done();
     }).catch((e) => {
       throw e;
     });
