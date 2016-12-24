@@ -6,19 +6,29 @@ for npm dependencies inspector
 
 ### usage
 
-#### install
+#### command use
 ```
   npm install -g dep-inspector
 ```
 
-#### use 
 ``` 
    cd yourProject
    dep-inspector
 ```
 
-### result
+### npm require
 
+```
+  npm install dep-inspector
+```
+
+```
+  const inspector = require('dep-inspector');
+  const dir = __dirname; // or your specified path
+  inspector(dir, options).then((result) => {
+     // to do...
+  });
+```
 
 
 
