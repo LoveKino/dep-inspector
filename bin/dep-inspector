@@ -2,7 +2,6 @@
 
 const program = require('commander');
 const chalk = require('chalk');
-chalk.enabled = true;
 const inspector = require('..');
 
 let getLogger = () => {
@@ -37,16 +36,15 @@ let displayDep = (msg, deps) => {
   logger.info('\n');
 };
 
-let display = (options = {}) => {
-  const cwd = options.path || process.cwd();
-  inspector(cwd, options).then((result) => {
+let display = (options) => {
+  inspector(options).then((result) => {
     let noDep = result.notDep || {};
     displayNotDep(noDep);
     let deps = result.deps;
     displayDep('Dependencies use', deps.dep);
     displayDep('Develop Dependencies use', deps.dev);
   }).catch((e) => {
-    logger.error(`inspector error: ${e}`);
+    logger.error(`inspector error: ${e.message}, ${e.stack.toString()}`);
   });
 };
 

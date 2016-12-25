@@ -11,10 +11,18 @@ for npm dependencies inspector
   npm install -g dep-inspector
 ```
 
+- dep-inspector -i [ignore]
+
 ``` 
    cd yourProject
    dep-inspector
+   // or..  ignore some modules, split with ,
+   dep-inspector -i mocha,istanbul
 ```
+
+- command display
+
+[!display](display.png)
 
 ### npm require
 
