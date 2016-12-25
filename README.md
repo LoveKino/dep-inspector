@@ -22,7 +22,9 @@ for npm dependencies inspector
 
 - command display
 
-[!display](display.png)
+
+![](display.png)
+
 
 ### npm require
 
