@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 
 describe('inspect index', () => {
   it('inspect proj1', (done) => {
-    const dir1 = path.join(__dirname, '../fixstures/proj1');
+    const dir1 = path.join(__dirname, '../fixtures/proj1');
     let expected = {
       "notDep": {
         "dep": [

@@ -1,14 +1,15 @@
 {
   "name": "dep-inspector",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "bin": {
     "dep-inspector": "./bin/dep-inspector"
   },
   "scripts": {
-    "test": "mocha test/**/*",
-    "cov": "istanbul cover npm test"
+    "test": "mocha test/units/**/*",
+    "cov": "istanbul cover npm test",
+    "t": "istanbul cover ./node_modules/mocha/bin/_mocha test/units/**/* --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
