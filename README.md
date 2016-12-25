@@ -35,7 +35,9 @@ for npm dependencies inspector
 ```
   const inspector = require('dep-inspector');
   const dir = __dirname; // or your specified path
-  inspector(dir, options).then((result) => {
+  inspector({
+    path: dir
+  }).then((result) => {
      // to do...
   });
 ```

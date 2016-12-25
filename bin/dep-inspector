@@ -29,6 +29,9 @@ let displayNotDep = (noDep) => {
 };
 
 let displayDep = (msg, deps) => {
+  if (!Object.keys(deps).length) {
+    return;
+  }
   console.log(chalk.green.bold(msg));
   for (let name in deps) {
     logger.info(`[${name}]: ${deps[name]}`);

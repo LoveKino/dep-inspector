@@ -1,6 +1,4 @@
-const {
-  inspect
-} = require('../../lib/inspector');
+const inspect = require('../../');
 const path = require('path');
 const expect = require('chai').expect;
 
@@ -36,6 +34,27 @@ describe('inspect index', () => {
     }).then((data) => {
       expect(data).to.deep.equal(expected);
       done();
+    }).catch((e) => {
+      throw e;
+    });
+  });
+
+  it('inspect proj2', () => {
+    const dir2 = path.join(__dirname, '../fixtures/proj2');
+    inspect({
+      path: dir2
+    }).then((data) => {
+      let expected = {
+        notDep: {
+          dep: [],
+          dev: []
+        },
+        deps: {
+          dep: {},
+          dev: {}
+        }
+      };
+      expect(data).to.deep.equal(expected);
     }).catch((e) => {
       throw e;
     });
