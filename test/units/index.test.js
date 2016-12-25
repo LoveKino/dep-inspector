@@ -31,7 +31,9 @@ describe('inspect index', () => {
         }
       }
     };
-    inspect(dir1).then((data) => {
+    inspect({
+      path: dir1
+    }).then((data) => {
       expect(data).to.deep.equal(expected);
       done();
     }).catch((e) => {
